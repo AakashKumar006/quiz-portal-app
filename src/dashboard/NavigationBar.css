@@ -1,0 +1,44 @@
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+    font-family: "Titillium Web", sans-serif;
+}
+
+header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: 80px;
+    padding: 0 2rem;
+    background-image: linear-gradient(79deg, wheat,#C66FBC 33%,wheat);
+    color: whitesmoke;
+}
+
+.nav-header {
+    color: #4F311C;
+    font-weight: bold;
+}
+
+nav a {
+    font-size: 1.1rem;
+    margin: 0 1rem;
+    color: black;
+    text-decoration: none;
+}
+
+nav a:hover {
+    color: black;
+}
+
+
+
+
+
+
+
+
+
+
+
+
