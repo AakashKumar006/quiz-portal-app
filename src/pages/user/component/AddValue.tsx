@@ -1,7 +1,7 @@
-import {IQuizSelectedOption} from "../model/IQuizSelectedOption";
+import {IQuizAttempt} from "../model/IQuizAttempt";
 
 type Props = {
-    selectedValueData: IQuizSelectedOption[];
+    selectedValueData: IQuizAttempt[];
 }
 
 const AddValue = (props: Props) => {

@@ -1,4 +1,4 @@
-export interface IQuiz {
+export interface ITopic {
     topicId?: number,
     topicName?: string,
     userId?: string | null,

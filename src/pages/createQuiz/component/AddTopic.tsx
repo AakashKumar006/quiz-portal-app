@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { FaAngleDown } from "react-icons/fa";
 import useInputCreateQuiz from "../../../hooks/use-input-createQuiz";
-import { IQuiz } from "../model/IQuiz";
+import { ITopic } from "../model/ITopic";
 import QuizList from "./QuizList";
 
 
@@ -9,7 +9,7 @@ import QuizList from "./QuizList";
 const AddTopic = () => {
     
     const [display, setDisplay] = useState("none");
-    const createNewQuiz = (quizData: IQuiz) => {
+    const createNewQuiz = (quizData: ITopic) => {
         /*let encoded = window.btoa('aakash.kumar@gmail.com:Pass@123');*/
         let encoded = window.btoa(sessionStorage.getItem("name")+":"+sessionStorage.getItem("password"));
         let auth = 'Basic '+encoded;
@@ -80,7 +80,7 @@ const AddTopic = () => {
             return;
         }
 
-        const createQuizRequestData : IQuiz = {
+        const createQuizRequestData : ITopic = {
             topicName: topicName,
             userId: sessionStorage.getItem("id"),
             description: description,

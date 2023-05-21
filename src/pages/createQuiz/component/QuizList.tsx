@@ -1,7 +1,7 @@
 import React, {useEffect, useState } from "react";
 import {Button, Col, Row } from "react-bootstrap";
 import { useNavigate } from "react-router-dom";
-import { IQuiz } from "../model/IQuiz";
+import { ITopic } from "../model/ITopic";
 
 const QuizList = () => {
     const navigate = useNavigate();
@@ -29,7 +29,7 @@ const QuizList = () => {
     let quizDataTODisplay;
 
     if(quizData.length !== undefined){
-        quizDataTODisplay = quizData.map((quiz:IQuiz) => {
+        quizDataTODisplay = quizData.map((quiz:ITopic) => {
             return(
                 <tr key={quiz.topicId}>
                     <td>{quiz.topicName}</td>
@@ -53,7 +53,7 @@ const QuizList = () => {
         quizDataTODisplay = <h5>no record found....</h5>
     }
 
-    const sendTopicData = (quizData: IQuiz) => {
+    const sendTopicData = (quizData: ITopic) => {
         navigate('/dashboard/createquiz/addQuestion', { state: { topicId: quizData.topicId, topicName: quizData.topicName ,topicDescription:quizData.description } });
     }
 

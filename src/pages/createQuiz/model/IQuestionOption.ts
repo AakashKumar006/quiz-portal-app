@@ -1,4 +1,4 @@
-export interface IQuesAns {
+export interface IQuestionOption {
     questionId?: string
     question: string,
     optionA: string,

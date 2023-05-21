@@ -1,10 +1,10 @@
 import React from "react";
 import {Button, Col, Row } from "react-bootstrap";
 
-import { IQuesAns } from "../model/IQuesAns";
+import { IQuestionOption } from "../model/IQuestionOption";
 
 interface QuestionAndAnswer{
-    data:Array<IQuesAns>;
+    data:Array<IQuestionOption>;
 }
 
 const QuestionListToAdd = ({data}:QuestionAndAnswer) => {
@@ -28,7 +28,7 @@ const QuestionListToAdd = ({data}:QuestionAndAnswer) => {
                     </tr>
                     </thead>
                     <tbody>
-                    {data.map((quiz:IQuesAns) => {
+                    {data.map((quiz:IQuestionOption) => {
                         return(
                             <tr key={quiz.question}>
                                 <td>{quiz.question}</td>

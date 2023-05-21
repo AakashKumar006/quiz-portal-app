@@ -5,7 +5,7 @@ import {
     FaAngleDown,
 } from "react-icons/fa";
 import QuizList from './QuizList';
-import { IQuiz, pageEnum } from '../model/IQuiz';
+import { ITopic, pageEnum } from '../model/ITopic';
 import useInputCreateQuiz from '../../../hooks/use-input-createQuiz';
 import AddQuestion from './AddQuestion';
 import NavigationBar from '../../../dashboard/NavigationBar';

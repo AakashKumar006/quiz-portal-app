@@ -1,5 +1,5 @@
 import React, {useEffect, useState} from "react";
-import {IQuiz} from "../../createQuiz/model/IQuiz";
+import {ITopic} from "../../createQuiz/model/ITopic";
 import {Button} from "react-bootstrap";
 import {useNavigate} from "react-router-dom";
 
@@ -28,7 +28,7 @@ const TakeQuiz = () => {
             })
     },[])
 
-    const sendTopicData = (quizData: IQuiz) => {
+    const sendTopicData = (quizData: ITopic) => {
         navigate('/dashboard/user/quiz/start', { state: { topicId: quizData.topicId, topicName: quizData.topicName ,topicDescription:quizData.description } });
     }
 
@@ -38,7 +38,7 @@ const TakeQuiz = () => {
 
             <div className="row mt-3">
                 {
-                    topicData.map((quiz:IQuiz) => {
+                    topicData.map((quiz:ITopic) => {
                         return(
                             <div className="col-md-4 mt-4">
                                 <div className="card">

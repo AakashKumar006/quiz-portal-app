@@ -1,11 +1,11 @@
 import React, { useState } from "react";
 import { Button } from "react-bootstrap";
 import { useLocation } from "react-router-dom";
-import { IQuesAns } from "../model/IQuesAns";
-import { IQuiz } from "../model/IQuiz";
+import { IQuestionOption } from "../model/IQuestionOption";
+
 import QuestionList from "./QuestionList";
 import QuestionListToAdd from "./QuestionListToAdd";
-import {IQuizSelectedOption} from "../../user/model/IQuizSelectedOption";
+import {IQuizAttempt} from "../../user/model/IQuizAttempt";
 
 
 
@@ -61,8 +61,8 @@ const AddQuestion = () => {
         setCorrect("");
     }
 
-    const [question, setQuestion] = useState<IQuesAns[]>([]);
-    const addQuestionToList = (question:IQuesAns) => {
+    const [question, setQuestion] = useState<IQuestionOption[]>([]);
+    const addQuestionToList = (question:IQuestionOption) => {
         setQuestion((prevExpenses) => {
             return [question, ...prevExpenses];
         });

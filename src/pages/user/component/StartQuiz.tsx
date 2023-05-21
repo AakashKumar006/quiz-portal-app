@@ -1,15 +1,16 @@
 import {useLocation} from "react-router-dom";
 import React, {useEffect, useRef, useState} from "react";
-import {IQuesAns} from "../../createQuiz/model/IQuesAns";
-import {IQuizSelectedOption} from "../model/IQuizSelectedOption";
-import AddValue from "./AddValue";
+import {IQuestionOption} from "../../createQuiz/model/IQuestionOption";
 import {Button} from "react-bootstrap";
+import {IQuestionCorrectOption} from "../model/IQuestionCorrectOption";
+import {IQuizAttempt} from "../model/IQuizAttempt";
 
 const StartQuiz = () => {
     const {state} = useLocation();
     const { topicId,topicName, topicDescription } = state; // Read values passed on state
     const [question, setQuestion] = useState([]);
-    const [optionList, setOptionList] = useState<IQuizSelectedOption[]>([]);
+    const [questCorrectOpt, setQuestCorrectOpt] = useState<IQuestionCorrectOption[]>([]);
+    const [quizAttempt, setQuizAttempt] = useState([]);
     let encoded = window.btoa(sessionStorage.getItem("name")+":"+sessionStorage.getItem("password"));
     let auth = 'Basic '+encoded;
     useEffect(() => {
@@ -29,26 +30,26 @@ const StartQuiz = () => {
     },[])
 
     const handleSubmit = (e:any) => {
-        const addSelectedOptionToList: IQuizSelectedOption = {
+        const addSelectedOptionToList: IQuestionCorrectOption = {
             questionId: e.target.form.Qid.value,
             selectedOption: e.target.value
         }
         addQuestionToList(addSelectedOptionToList);
     }
 
-    const onSubmitClickHandler = () => {
+    const postQuizAttemptData = (quizAttempt:IQuizAttempt) => {
 
-        /*let encoded = window.btoa('aakash.kumar@gmail.com:Pass@123');*/
+
         let encoded = window.btoa(sessionStorage.getItem("name")+":"+sessionStorage.getItem("password"));
         let auth = 'Basic '+encoded;
-        fetch('http://localhost:8080/quiz/attempted/'+ topicId,{
+        fetch('http://localhost:8080/api/v1/attempts',{
             mode: 'cors',
             method: 'POST',
             headers: {
                 'Authorization': auth,
                 'content-type' : 'application/json',
             },
-            body: JSON.stringify(optionList)
+            body: JSON.stringify(quizAttempt)
         }).then(response => response.json())
             .then(response => {
                 alert("Question Added")
@@ -56,17 +57,23 @@ const StartQuiz = () => {
             })
         setQuestion([]);
         window.location.reload();
-
     }
 
-    const addQuestionToList = (optionList:IQuizSelectedOption) => {
+    const onSubmitClickHandler = () => {
+        setQuestCorrectOpt(questCorrectOpt);
+        const quizAttemptData: IQuizAttempt = {
+            topicId: topicId,
+            questCorrectOpt: questCorrectOpt
+        }
+        console.log(quizAttemptData);
+        postQuizAttemptData(quizAttemptData);
+    }
 
-        setOptionList((prevExpenses) => {
-            prevExpenses.map((obj)=>{
-                console.log("************** *** :   "+obj.questionId);
-            })
-            return [optionList, ...prevExpenses];
+    const addQuestionToList = (questCorrectOpt:IQuestionCorrectOption) => {
+        setQuestCorrectOpt((prevQuestCorrectOpt) => {
+            return [questCorrectOpt, ...prevQuestCorrectOpt];
         });
+        console.log(questCorrectOpt);
     }
 
     let counter = 0;
@@ -79,7 +86,7 @@ const StartQuiz = () => {
                         <h5><strong>TOPIC NAME</strong></h5>
                         <h5>{topicName} </h5>
                     </div>
-                    {question.map((ques:IQuesAns)=>{
+                    {question.map((ques:IQuestionOption)=>{
                         counter++;
                         return(
                             <form>

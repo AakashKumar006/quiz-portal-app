@@ -1,5 +1,5 @@
 import React, {useEffect, useState } from "react";
-import { IQuesAns } from "../model/IQuesAns";
+import { IQuestionOption } from "../model/IQuestionOption";
 
 type Props = {
     topicId:number
@@ -48,7 +48,7 @@ const QuestionList = (props: Props) => {
                    </tr>
                    </thead>
                    <tbody>
-                   {quizData.map((quiz:IQuesAns) => {
+                   {quizData.map((quiz:IQuestionOption) => {
                        return(
                            <tr key={quiz.question}>
                                <td>{quiz.question}</td>
