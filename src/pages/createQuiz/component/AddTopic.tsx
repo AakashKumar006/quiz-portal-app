@@ -4,16 +4,12 @@ import useInputCreateQuiz from "../../../hooks/use-input-createQuiz";
 import { ITopic } from "../model/ITopic";
 import QuizList from "./QuizList";
 
-
-
 const AddTopic = () => {
-    
     const [display, setDisplay] = useState("none");
     const createNewQuiz = (quizData: ITopic) => {
-        /*let encoded = window.btoa('aakash.kumar@gmail.com:Pass@123');*/
         let encoded = window.btoa(sessionStorage.getItem("name")+":"+sessionStorage.getItem("password"));
         let auth = 'Basic '+encoded;
-        fetch('http://localhost:8080/initiateQuiz',{
+        fetch('http://localhost:8080/api/v1/topic',{
             mode: 'cors',
             method: 'POST',
             headers: {
@@ -47,15 +43,6 @@ const AddTopic = () => {
     } = useInputCreateQuiz("description","string");
 
     const {
-        value: noOfQuestion,
-        hasError: noOfQuestionHasError,
-        valueChangedHandler: noOfQuestionChangeHandler,
-        inputBlurHandler: noOfQuestionBlurHandler,
-        inputClass: noOfQuestionInputClass,
-        errorMessage: noOfQuestionErrorMessage
-    } = useInputCreateQuiz("noOfQuestion","string");
-
-    const {
         id: marksPerQuestion,
         hasError: marksPerQuestionHasError,
         valueChangedHandler: marksPerQuestionChangeHandler,
@@ -68,7 +55,7 @@ const AddTopic = () => {
     if(
         topicNameHasError === false &&
         descriptionHasError === false &&
-        noOfQuestionHasError === false &&
+
         marksPerQuestionHasError === false
     ) {
         formIsValid = true;
@@ -79,13 +66,12 @@ const AddTopic = () => {
         if(!formIsValid) {
             return;
         }
-
         const createQuizRequestData : ITopic = {
             topicName: topicName,
             userId: sessionStorage.getItem("id"),
             description: description,
-            numberOfQuestion : noOfQuestion,
             marksPerQuestion: marksPerQuestion,
+            publishedOn : new Date()
         }
         createNewQuiz(createQuizRequestData);
     }
@@ -104,7 +90,7 @@ const AddTopic = () => {
                 <form onSubmit={createQuizSubmitHandler}>
                     <div className="card card-primary">
                         <div className="card-header" style={{color: "white", fontWeight:"bold", background:"#7439db"}}>
-                            <h5>Create New Quiz <span className="btn-tool" onClick={displayHandler}><FaAngleDown/></span></h5>
+                            <h5>Create New Quiz <span className="btn-tool"  onClick={displayHandler}><FaAngleDown/></span></h5>
                         </div>
                         <div className="card-body" style={{display:display}}>
                             <div className="row">
@@ -121,13 +107,6 @@ const AddTopic = () => {
                                         <label><span className="required"></span><strong>Description</strong></label>
                                         <textarea  value={description} placeholder="Enter Quiz Description" className={descriptionInputClass} onChange={descriptionChangeHandler} onBlur={descriptionBlurHandler} />
                                         {descriptionHasError && <small className="text-danger">{descriptionErrorMessage}</small>}
-                                    </div>
-                                </div>
-                                <div className="col-lg-3">
-                                    <div className="form-group">
-                                        <label><span className="required"></span><strong>Number Of Question</strong></label>
-                                        <input type="number" value={noOfQuestion} placeholder="Enter Number Of Question" className={noOfQuestionInputClass} onChange={noOfQuestionChangeHandler} onBlur={noOfQuestionBlurHandler}/>
-                                        {noOfQuestionHasError && <small className="text-danger">{noOfQuestionErrorMessage}</small>}
                                     </div>
                                 </div>
                                 <div className="col-3">

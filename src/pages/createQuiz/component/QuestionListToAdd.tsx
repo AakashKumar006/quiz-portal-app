@@ -1,6 +1,5 @@
 import React from "react";
 import {Button, Col, Row } from "react-bootstrap";
-
 import { IQuestionOption } from "../model/IQuestionOption";
 
 interface QuestionAndAnswer{
@@ -9,12 +8,11 @@ interface QuestionAndAnswer{
 
 const QuestionListToAdd = ({data}:QuestionAndAnswer) => {
 
-
     return(
         <div className="row mt-3">
             <div className="col-md-12">
-                <div className="card-header" style={{color: "white", fontWeight:"bold", background:"green"}}>
-                    <h5 className="card-title">List of Question And Answers To Submit</h5>
+                <div className="card-header" style={{color: "white", fontWeight:"bold", background:"darkcyan", height:"50px", textAlign:"center"}}>
+                    <h5 className="card-title" style={{margin:"4px"}} >List of Question And Answers To Submit</h5>
                 </div>
                 <table className="table">
                     <thead>

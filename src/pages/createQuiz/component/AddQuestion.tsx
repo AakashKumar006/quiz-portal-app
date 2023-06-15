@@ -2,24 +2,18 @@ import React, { useState } from "react";
 import { Button } from "react-bootstrap";
 import { useLocation } from "react-router-dom";
 import { IQuestionOption } from "../model/IQuestionOption";
-
 import QuestionList from "./QuestionList";
 import QuestionListToAdd from "./QuestionListToAdd";
-import {IQuizAttempt} from "../../user/model/IQuizAttempt";
-
-
 
 const AddQuestion = () => {
     const {state} = useLocation();
-    const { topicId,topicName, topicDescription } = state; // Read values passed on state
-
+    const { topicId,topicName} = state; // Read values passed on state
     const [enterQuestion, setEnterQuestion] = useState("");
     const [optionA, setOptionA] = useState("");
     const [optionB, setOptionB] = useState("");
     const [optionC, setOptionC] = useState("");
     const [optionD, setOptionD] = useState("");
     const [correct, setCorrect] = useState("0");
-
 
     const questionChangeHandler = (event:any) => {
         setEnterQuestion(event.target.value);
@@ -43,14 +37,12 @@ const AddQuestion = () => {
     const addQuestionHandler = (event:any) => {
         event.preventDefault();
         const quesAnsData = {
-
             question: enterQuestion,
             optionA: optionA,
             optionB: optionB,
             optionC: optionC,
             optionD:optionD,
             correctOption:correct
-
         };
         addQuestionToList(quesAnsData);
         setEnterQuestion("");
@@ -69,11 +61,9 @@ const AddQuestion = () => {
     }
 
     const onSubmitClickHandler = () => {
-
-        /*let encoded = window.btoa('aakash.kumar@gmail.com:Pass@123');*/
         let encoded = window.btoa(sessionStorage.getItem("name")+":"+sessionStorage.getItem("password"));
         let auth = 'Basic '+encoded;
-        fetch('http://localhost:8080/addQuestion/'+ topicId,{
+        fetch('http://localhost:8080/api/v1/questions/topic/'+ topicId,{
             mode: 'cors',
             method: 'POST',
             headers: {
@@ -148,7 +138,7 @@ const AddQuestion = () => {
                         </div>
                     </div>
                 </form>
-                <center><Button type="submit" onClick={onSubmitClickHandler}  style={{fontWeight:"bold"}} >Submit All</Button></center>
+                <Button type="submit" onClick={onSubmitClickHandler}  style={{fontWeight:"bold"}} >Submit All</Button>
                 <QuestionListToAdd data={question}/>
                 <QuestionList topicId={topicId}/>
             </div>

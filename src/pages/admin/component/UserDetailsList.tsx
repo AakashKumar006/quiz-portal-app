@@ -1,11 +1,9 @@
-import React, {useEffect, useState } from 'react';
-import {Button, Col, Row } from 'react-bootstrap';
+import React, { useState } from 'react';
 import {IQuizUser} from '../model/IQuizUser'
 import UserDataModal from './UserDataModal';
 import UserDetailsFetch from './UserDetailsFetch';
 
 const UserDetailsList = () => {
-
     const [showModal, setShowModal] = useState(false);
     const [userData, setUserData] = useState(null as IQuizUser | null);
     const showModalHandler = (userData: IQuizUser) => {

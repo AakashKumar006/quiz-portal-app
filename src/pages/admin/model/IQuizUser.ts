@@ -3,7 +3,7 @@ export interface IQuizUser {
     userFirstName: string,
     userMiddleName?: string,
     userLastName : string,
-    userDateOfBirth: string,
+    userDateOfBirth: Date,
     userAge : number,
     userEmail : string,
     userPhoneNo: string,

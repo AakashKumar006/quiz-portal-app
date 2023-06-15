@@ -1,0 +1,58 @@
+.modalBackgroundError {
+    left:0;
+    right:0;
+    top:20px;
+    width: 110vw;
+    height: 100vh;
+    position: fixed;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.modalContainerError {
+    width: 400px;
+    height: 240px;
+    border-radius: 12px;
+    background-color: white;
+    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+    display: flex;
+    flex-direction: column;
+    padding: 20px;
+}
+
+.modalContainerError .title {
+    background-color: darkviolet;
+    color: lavender;
+    display: inline-block;
+    text-align: center;
+    margin-top: 2px;
+}
+
+.modalContainerError .body {
+    flex: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 1.0rem;
+    text-align: center;
+}
+
+.modalContainerError .footer {
+    flex: 20%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.modalContainerError .footer button {
+    width: 85px;
+    height: 35px;
+    border: none;
+
+    color: white;
+    border-radius: 8px;
+    font-size: 18px;
+    cursor: pointer;
+}
+

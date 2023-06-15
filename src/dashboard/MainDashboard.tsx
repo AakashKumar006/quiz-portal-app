@@ -14,6 +14,8 @@ import AddQuestion from "../pages/createQuiz/component/AddQuestion";
 import AllQuiz from "../pages/createQuiz/component/AllQuiz";
 import TakeQuiz from "../pages/user/component/TakeQuiz";
 import UserQuiz from "../pages/user/component/UserQuiz";
+import QuizAttempts from "../pages/user/component/QuizAttempts";
+import ViewQuestion from "../pages/user/component/ViewQuestion";
 
 
 
@@ -23,14 +25,15 @@ function MainDashboard() {
     if(sessionStorage.getItem("authenticate") !== "true") {
         return <Navigate replace to="/login" />;
     } else {
-        let roleBasedLink;
+        let roleBasedLink = [];
         if(sessionStorage.getItem("role") == "ROLE_ADMIN"){
-            roleBasedLink = <Route path="/createquiz/*" element={<CreateQuiz/>}/>
+            roleBasedLink.push(<Route path="/createquiz/*" element={<CreateQuiz/>}/>)
         }
         if(sessionStorage.getItem("role") == "ROLE_USER"){
-            roleBasedLink = <Route path="/user/quiz/*" element={<UserQuiz/>}/>
+            roleBasedLink.push(<Route path="/user/quiz/*" element={<UserQuiz/>}/>);
+            roleBasedLink.push(<Route path="/attempts" element={<QuizAttempts/>}/>);
         }
-        
+
         return (
             <React.Fragment>
                 <NavigationBar userName={sessionStorage.getItem("name")} />
@@ -38,7 +41,9 @@ function MainDashboard() {
                     <section className="section-content">
                     <Routes>
                         {roleBasedLink}
-                        <Route path="/allquiz" element={<AllQuiz/>}/>
+                        <Route path="/allquiz/*" element={<AllQuiz/>}/>
+                        <Route path="/allquiz/question" element={<ViewQuestion/>}/>
+
                         <Route path="/user" element={<User/>}/>
                     </Routes>
                     </section>

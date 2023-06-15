@@ -1,0 +1,20 @@
+.card-header{
+    color: white;
+    font-weight: bold;
+    background: #5856d6;
+    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+}
+
+.view-question-btn{
+    color: green;
+    font-size: 20px;
+    cursor: pointer;
+}
+
+.view-question-btn:hover{
+    color: darkblue;
+    font-size: 30px;
+    cursor: pointer;
+}
+
+

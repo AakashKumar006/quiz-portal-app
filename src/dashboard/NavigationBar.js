@@ -4,17 +4,13 @@ import "./NavigationBar.css";
 import { useNavigate } from "react-router-dom";
 import Logo from '../assests/images/quiz.png'
 
-type Props = {
-    userName: any;
-}
-const Navbar = (props: Props) => {
+
+const Navbar = (props) => {
     const navigate = useNavigate();
     const {userName} = props;
-
     const userLogoutHandler = () => {
         sessionStorage.clear();
         navigate('/login');
-
     }
 
     return (
@@ -24,7 +20,7 @@ const Navbar = (props: Props) => {
             <nav>
                 <a href="/#">Dashboard</a>
                 <a href="/#">My Profile</a>
-                <a href="/#">{props.userName}</a>
+                <a href="/#">{userName}</a>
                 <a onClick={userLogoutHandler} className="btn btn-danger" href="#" role="button">LOGOUT</a>
 
             </nav>

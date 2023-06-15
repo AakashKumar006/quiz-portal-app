@@ -1,12 +1,24 @@
+
+interface userDetails {
+    userFirstName?: string,
+    userMiddleName?: string,
+    userLastName?: string,
+
+
+}
+
+
 export interface ITopic {
     topicId?: number,
     topicName?: string,
     userId?: string | null,
     description?: string,
-    numberOfQuestion? : number | string,
+    numberOfQuestion? : number,
     marksPerQuestion?: number,
     maxMarks? : number,
     publish? : number,
+    publishedOn : Date,
+    createdBy? : userDetails
 }
 
 

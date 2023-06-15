@@ -1,7 +1,6 @@
 import { useState } from "react";
 
 const useInputLogin = (validateValue:string, type:string) => {
-    console.log("hitting")
     const [enteredValue, setEnteredValue] = useState('');
     const [selectedId, setSelectedId] = useState<number>(0);
     const [isTouched, setIsTouched] = useState(false);

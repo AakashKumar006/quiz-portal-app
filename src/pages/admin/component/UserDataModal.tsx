@@ -1,5 +1,6 @@
 import { IQuizUser } from "../model/IQuizUser";
 import "../style/Modal.css";
+import DateFormat from "../../../hooks/DateFormat";
 
 type Props = {
     onClose: () => void;
@@ -27,7 +28,7 @@ const UserDataModal = (props: Props) => {
                             <td className="col-sm-12">Age  :  {userData.userAge}</td>
                         </tr>
                         <tr>
-                            <td className="col-sm-12">DOB  :  {userData.userDateOfBirth}</td>
+                            <td className="col-sm-12">DOB  :  {<DateFormat date={userData.userDateOfBirth}/>}</td>
                         </tr>
                         <tr>
                             <td className="col-sm-12">Phone No : {userData.userPhoneNo}</td>
@@ -35,24 +36,19 @@ const UserDataModal = (props: Props) => {
                         <tr>
                             {userData.isActive == 1 && <td className="col-sm-12">state  :  Active</td>}
                             {userData.isActive == 0 && <td className="col-sm-12">state  :  In-Active</td>}
-
                         </tr>
                         <tr>
                             <td className="col-sm-12">Created On  :  {userData.userCreatedOn}</td>
                         </tr>
                         </tbody>
                     </table>
-
                     <div className="footer">
                         <button onClick={onClose} id="cancelBtn">Close</button>
                     </div>
                 </div>
             </div>
         </div>
-
     );
-
-
 }
 
 export default UserDataModal;

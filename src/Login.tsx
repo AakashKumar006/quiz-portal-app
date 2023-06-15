@@ -31,14 +31,9 @@ const Login = () => {
     } = useInput("password","string");
 
     const userAuthCreadentialCall = (loginAuthCredential: IQuizUserAuthCreadential) => {
-        let encoded = window.btoa(email+':'+password);
-        /*let encoded = window.btoa(sessionStorage.getItem("name")+":"+sessionStorage.getItem("password"));*/
-        console.log(encoded);
-        let auth = 'Basic '+encoded;
         fetch('http://localhost:8080/userLogin',{
             method: 'POST',
             headers: {
-                'Authorization': auth,
                 'content-type' : 'application/json',
             },
             body: JSON.stringify(loginAuthCredential)
@@ -109,7 +104,7 @@ const Login = () => {
                     <input value={email} type="email" placeholder="Enter your email" className={emailInputClass} onChange={emailChangeHandler} onBlur={emailBlurHandler}/>
                     {emailHasError && <small className="text-white bg-dark">{emailErrorMessage}</small>}
                     <label>password</label>
-                    <input value={password} type="password" placeholder="********" className={passwordInputClass} onChange={passwordChangeHandler}/>
+                    <input value={password} type="password" placeholder="********" className={passwordInputClass} onChange={passwordChangeHandler} onBlur={passwordBlurHandler}/>
                     {passwordHasError && <small className="text-white bg-dark">{passwordErrorMessage}</small>}
                     <button className="button-btn" disabled={!formIsValid}>Log In</button>
                 </form>

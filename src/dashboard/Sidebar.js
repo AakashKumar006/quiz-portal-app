@@ -39,6 +39,13 @@ const Sidebar = ({children}) => {
             role:"ROLE_USER",
             icon:<FaUserAlt/>
         },
+        {
+            path:"/dashboard/attempts",
+            name:"Attempts",
+            role: "ROLE_USER",
+            icon:<FaRegChartBar/>
+        },
+
     ]
     return(
        <div className="view">

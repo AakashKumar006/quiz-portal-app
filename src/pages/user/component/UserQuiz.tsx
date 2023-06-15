@@ -11,6 +11,7 @@ const UserQuiz = () => {
             <Route index element={<Navigate to="/dashboard/user/quiz/list" />} />
             <Route path="/list" element={<TakeQuiz />}/>
             <Route path="/start" element={<StartQuiz/>}/>
+            <Route path="/attempts" element={<StartQuiz/>}/>
         </Routes>
     )
 }

@@ -1,22 +1,16 @@
 import React, {useEffect, useState } from "react"
 import {Button, Col, Row } from "react-bootstrap"
 import { IQuizUser } from "../model/IQuizUser"
-
-
 import '../style/Modal.css';
-
 
 type Props = {
     viewUserDetails: (userDetails: IQuizUser) => void;
 }
 
 const UserDetailsFetch = (props: Props) => {
-
     const {viewUserDetails} = props;
     const [user, setUser] = useState([])
-    /*let encoded = window.btoa('aakash.kumar@gmail.com:Pass@123');*/
     let encoded = window.btoa(sessionStorage.getItem("name")+":"+sessionStorage.getItem("password"));
-
     let auth = 'Basic '+encoded;
     useEffect(() => {
         fetch("http://localhost:8080/user/all",{
@@ -34,11 +28,8 @@ const UserDetailsFetch = (props: Props) => {
                 setUser(data);
             })
     },[])
-    console.log(user);
-
 
     return(
-
         <tbody>
         {user.map((user:IQuizUser) => {
             return(
@@ -61,8 +52,6 @@ const UserDetailsFetch = (props: Props) => {
             );}
         )}
         </tbody>
-
-
     );
 }
 
